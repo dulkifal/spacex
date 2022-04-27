@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import React, { useState,useEffect } from 'react';
-
  
 
 export default function Home({data}) {
@@ -55,20 +53,14 @@ export default function Home({data}) {
               return(
                 
                 <div className={styles.card} key={e.flight_number}>
-             
             <div className={styles.image}>
               <Image   src={e.links.mission_patch_small} width={200} height={200} layout="responsive" alt="Image" />
             </div>
             <h3>{e.mission_name} </h3>
             <h3>Mission Ids: {e.mission_id} </h3>
-
-            
             <h3>Launch Year: {e.launch_year} </h3>
-            
             <h3>Successful Launch: {e.launch_success.toString()} </h3>
-            
             <h3>Successful Landing: {e.rocket.first_stage.cores[0].landing_intent.toString()}</h3>
-            
             </div>
             );
             
@@ -88,17 +80,15 @@ export default function Home({data}) {
  
 }
 
-// This gets called on every request
+ 
 export async function getServerSideProps() {
-  // getServerSideProps()
+ 
   const api =
     "https://api.spacexdata.com/v3/launches?limit=100";
     
   const res = await fetch(api);
   const data = await res.json()
   return { props: { data } }
-
-  // Pass data to the page via props
 }
 
 
