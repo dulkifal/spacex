@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({data}) {
+  console.log("last")
   return (
     <div className={styles.container}>
       <Head>
@@ -13,57 +14,90 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          SpaceX Launch Programs
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          <div className={styles.card}>
+            <h1 className={styles.filters}>Filters</h1>
+            <h2>Launch Year</h2>
+            <div className={styles.buttons}>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+              <button>2006</button>
+              <button>2007</button>
+              <button>2008</button>
+              <button>2009</button>
+              <button>2010</button>
+              <button>2006</button>
+              <button>2007</button>
+              <button>2008</button>
+              <button>2009</button>
+              <button>2010</button>
+              <button>2006</button>
+            </div>
+            <h2>Successful Launch</h2>
+            <div className={styles.buttons}>
+              <button>True</button>
+              <button>False</button>
+            </div>
+            <h2>Successful Launch</h2>
+            <div className={styles.buttons}>
+              <button>True</button>
+              <button>False</button>
+            </div>
+ 
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+          </div>
+          {data.map((e)=>{
+            return(
+            
+            <div className={styles.card} key={e.flight_number}>
+             
+            <div className={styles.image}>
+              <Image   src={e.links.mission_patch_small} width={200} height={200} layout="responsive" alt="Image" />
+            </div>
+            <h3>{e.mission_name} </h3>
+            <h3>Mission Ids: {e.mission_id} </h3>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            
+            <h3>Launch Year: {e.launch_year} </h3>
+            
+            <h3>Successful Launch: {e.launch_success} </h3>
+            
+            <h3>Successful Landing: {e.rocket.first_stage.cores[0].land_success}</h3>
+            
+            </div>
+            );
+         
+        })}
+ 
+
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+        <a>
+          Developed by Dulkifal
         </a>
       </footer>
     </div>
   )
+ 
 }
+
+
+
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://api.spacexdata.com/v3/launches?limit=100`)
+    // const res = await fetch(`file:///F:/spacex/spacex/pages/he.js`)
+  const data = await res.json()
+   
+
+  // Pass data to the page via props
+  return { props: { data } }
+}
+
+

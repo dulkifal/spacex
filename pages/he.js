@@ -1,4 +1,6 @@
-[
+ 
+ 
+ const a =   [
   {
     flight_number: 1,
     mission_name: "FalconSat",
@@ -216,5 +218,13 @@
     timeline: { webcast_liftoff: 60 },
     crew: null,
   }
-];
+]
 
+
+
+console.log(a[0].mission_name)
+console.log(a[0].mission_id)
+console.log(a[0].launch_year)
+console.log(a[0].launch_success)
+console.log(a[0].rocket.first_stage.cores[0].land_success)
+console.log(a[0].links.mission_patch_small)
