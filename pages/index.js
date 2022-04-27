@@ -3,6 +3,13 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
  
 
+const allApi = [
+  "https://api.spacexdata.com/v3/launches?limit=100",
+  "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true",
+  "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&land_success=true",
+  "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&land_success=true&launch_year=2014"
+]
+
 export default function Home({data}) {
   
   return (
