@@ -1,9 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import React, { useState,useEffect } from 'react';
+
+ 
 
 export default function Home({data}) {
-  console.log("last")
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -16,7 +19,6 @@ export default function Home({data}) {
         <h1 className={styles.title}>
           SpaceX Launch Programs
         </h1>
-
 
         <div className={styles.grid}>
           <div className={styles.card}>
@@ -38,7 +40,7 @@ export default function Home({data}) {
             </div>
             <h2>Successful Launch</h2>
             <div className={styles.buttons}>
-              <button>True</button>
+              <button onClick={() => setCount(count + 1)}>True</button>
               <button>False</button>
             </div>
             <h2>Successful Launch</h2>
@@ -46,13 +48,13 @@ export default function Home({data}) {
               <button>True</button>
               <button>False</button>
             </div>
- 
 
           </div>
-          {data.map((e)=>{
-            return(
-            
-            <div className={styles.card} key={e.flight_number}>
+          
+            {data.map((e)=>{
+              return(
+                
+                <div className={styles.card} key={e.flight_number}>
              
             <div className={styles.image}>
               <Image   src={e.links.mission_patch_small} width={200} height={200} layout="responsive" alt="Image" />
@@ -69,9 +71,8 @@ export default function Home({data}) {
             
             </div>
             );
-         
-        })}
- 
+            
+          })}
 
         </div>
       </main>
@@ -86,18 +87,17 @@ export default function Home({data}) {
  
 }
 
-
-
 // This gets called on every request
 export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`https://api.spacexdata.com/v3/launches?limit=100`)
-    // const res = await fetch(`file:///F:/spacex/spacex/pages/he.js`)
+  // getServerSideProps()
+  const api =
+    "https://api.spacexdata.com/v3/launches?limit=100";
+    
+  const res = await fetch(api);
   const data = await res.json()
-   
+  return { props: { data } }
 
   // Pass data to the page via props
-  return { props: { data } }
 }
 
 

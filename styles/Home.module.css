@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color:  #cdd9e6;
+  background-color:  #fafafa;
 }
 
 .footer {
@@ -29,17 +29,14 @@
   flex-grow: 1;
 }
 
-.title a {
-  color: #b3c1d0;
-  text-decoration: none;
-
-}
 
  
 .title {
+   
   margin: 0;
   line-height: 1.15;
   font-size: 2rem;
+  width: fit-content;
 }
 
 .code {
@@ -54,9 +51,8 @@
 .grid {
   display: grid;
   grid-template-columns:1fr 1fr 1fr 1fr;
-  
-  
-  /* flex-wrap: wrap; */
+   flex-wrap: wrap; 
+ 
  }
 
  .grid .card {
@@ -64,18 +60,22 @@
   padding: 1.5rem;
   text-align: left;
   color: inherit;
-  background-color: #e4e1f1;
-  text-decoration: none;
+  background-color: #fafafa;
+  text-decoration: none;   
+}
+ .first {
+  grid-column: 1 / span 1; 
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  background-color: #fafafa;
+  text-decoration: none; 
   
-  
-  
-  
-   
+  height: fit-content;
 }
 
- 
 .card h2 {
-  
   font-size: 1.5rem;
   text-align: center;
   text-decoration: underline;
@@ -100,7 +100,7 @@
 
 }
 .buttons >button{
-  background-color: #f0efeb;
+  background-color: #b3e36c;
   border: none;
   height: 2.5rem;
   width: 5rem;
@@ -110,9 +110,18 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.buttons :hover{
+background-color: #15d451;
+}
 .card .image{
   width: 100%;
    
+}
+.his{
+  background-color: #dcdae8;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  
 }
  
 
@@ -123,12 +132,13 @@
   
 }
 
-
-
 @media (max-width: 700px) {
   
   .grid {
    
+    grid-template-columns: 1fr;
+  }
+  .his{
     grid-template-columns: 1fr;
   }
 }
