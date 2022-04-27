@@ -20,8 +20,8 @@ export default function Home({data}) {
           SpaceX Launch Programs
         </h1>
 
-        <div className={styles.grid}>
-          <div className={styles.card}>
+        <div className={styles.his}>
+          <div className={styles.first}>
             <h1 className={styles.filters}>Filters</h1>
             <h2>Launch Year</h2>
             <div className={styles.buttons}>
@@ -50,7 +50,7 @@ export default function Home({data}) {
             </div>
 
           </div>
-          
+          <div className={styles.grid}>
             {data.map((e)=>{
               return(
                 
@@ -74,6 +74,7 @@ export default function Home({data}) {
             
           })}
 
+        </div>
         </div>
       </main>
 
