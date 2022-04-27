@@ -63,9 +63,9 @@ export default function Home({data}) {
             
             <h3>Launch Year: {e.launch_year} </h3>
             
-            <h3>Successful Launch: {e.launch_success} </h3>
+            <h3>Successful Launch: {e.launch_success.toString()} </h3>
             
-            <h3>Successful Landing: {e.rocket.first_stage.cores[0].land_success}</h3>
+            <h3>Successful Landing: {e.rocket.first_stage.cores[0].landing_intent.toString()}</h3>
             
             </div>
             );
